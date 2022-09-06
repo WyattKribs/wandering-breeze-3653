@@ -12,4 +12,16 @@ RSpec.describe Project, type: :model do
     it {should have_many :contestant_projects}
     it {should have_many(:contestants).through(:contestant_projects)}
   end
+
+  
+  describe "methods" do
+    before :each do
+      @challenge = Challenge.create!(theme: "Olde Schoole", project_budget: 500)
+      @project = Project.create!(name: "Dapper Hat", material: "Silk", challenge_id: @challenge.id)
+    end
+
+    it "tests the challenge_name method" do
+      expect(@project.challenge_name).to eq("Olde Schoole")
+    end
+  end
 end
